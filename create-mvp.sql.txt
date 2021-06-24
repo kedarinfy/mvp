@@ -1,0 +1,98 @@
+
+
+CREATE DATABASE mvp
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+
+
+CREATE TABLE public.code_preise
+(
+    bpgn_basispreis numeric(15,4),
+    bpgn_gueltig_ab timestamp without time zone,
+    bpgn_gueltig_bis timestamp without time zone,
+    bpgn_nummer numeric(15,0),
+    bpgn_preis_folgt character varying(1) COLLATE pg_catalog."default",
+    bpgn_vorlaeufig character varying(1) COLLATE pg_catalog."default",
+    bpli_nummer numeric(15,0),
+    ktxt_nummer numeric(15,0),
+    akbl_gueltig_ab timestamp without time zone,
+    akbl_gueltig_bis timestamp without time zone,
+    areg_code character varying(4) COLLATE pg_catalog."default",
+    defo_nummer numeric(10,0),
+    depo_nummer numeric(10,0),
+    ktxt_standard_knz character varying(1) COLLATE pg_catalog."default",
+    depo_allg_bez character varying(255) COLLATE pg_catalog."default"
+)
+
+
+CREATE TABLE public.paketaltbestandteile
+(
+    acpa_nummer numeric(10,0),
+    defo_nummer numeric(10,0),
+    depo_nummer numeric(10,0),
+    areg_code_paket character varying(4) COLLATE pg_catalog."default",
+    areg_code_mj character varying(4) COLLATE pg_catalog."default",
+    defo_nummer_grund numeric(10,0),
+    depo_nummer_grund numeric(10,0),
+    apbe_gueltig_von timestamp without time zone,
+    apbe_gueltig_bis timestamp without time zone,
+    areg_code_grund character varying(4) COLLATE pg_catalog."default",
+    areg_code_alter character varying(4) COLLATE pg_catalog."default"
+)
+
+
+-- Table: public.paketgrundbestandteile
+
+-- DROP TABLE public.paketgrundbestandteile;
+
+CREATE TABLE public.paketgrundbestandteile
+(
+    acpa_nummer numeric(10,0),
+    defo_nummer numeric(10,0),
+    depo_nummer numeric(10,0),
+    areg_code_paket character varying(4) COLLATE pg_catalog."default",
+    areg_code_mj character varying(4) COLLATE pg_catalog."default",
+    areg_code_grund character varying(4) COLLATE pg_catalog."default",
+    defo_nummer_grund numeric(10,0),
+    depo_nummer_grund numeric(10,0),
+    apbe_gueltig_von timestamp without time zone,
+    apbe_gueltig_bis timestamp without time zone
+)
+
+
+CREATE TABLE public.serie
+(
+    acsc_nummer numeric(10,0),
+    areg_code_serie character varying(4) COLLATE pg_catalog."default",
+    depo_allg_bez character varying(255) COLLATE pg_catalog."default",
+    defo_nummer numeric(10,0),
+    depo_nummer numeric(10,0),
+    acsc_serie_von timestamp without time zone,
+    acsc_serie_bis timestamp without time zone,
+    acsc_serien_art character varying(4) COLLATE pg_catalog."default",
+    areg_code_mj character varying(4) COLLATE pg_catalog."default",
+    areg_code_1 character varying(4) COLLATE pg_catalog."default",
+    areg_code_2 character varying(4) COLLATE pg_catalog."default",
+    areg_code_getriebe character varying(4) COLLATE pg_catalog."default",
+    areg_code_pl character varying(4) COLLATE pg_catalog."default"
+)
+
+ALTER TABLE public.serie
+    OWNER to postgres;
+
+ALTER TABLE public.paketgrundbestandteile
+    OWNER to postgres;
+TABLESPACE pg_default;
+
+ALTER TABLE public.paketaltbestandteile
+    OWNER to postgres;
+
+ALTER TABLE public.code_preise
+    OWNER to postgres;
+
